@@ -14,12 +14,11 @@ let svg = d3.select("body").append("svg")
 							.attr("width", width)
 							.attr("height", height);
 
-svg.append("rect")							
-	.attr("x",0)
-	.attr("y",0)
-	.attr("width", width)
-	.attr("height", height)
-	.attr("fill", "white");
+svg.append("text")
+	.text("Force Directed Graph Showing National Contiguity")
+	.attr("x", 100)
+	.attr("y", 50)
+	.style("font-size", "2.5em");
 
 d3.json(url, drawForceGraph);
 
@@ -31,9 +30,7 @@ function drawForceGraph(data){
 					.force("link", d3.forceLink(links).distance(25))
 					.force("charge", d3.forceManyBody().strength(-6))
 					.force("collide", d3.forceCollide(25))
-					.force("center", d3.forceCenter(width/2 - 50, height/2 - 50))
-					//.force("y", d3.forceY())
-            		//.force("x", d3.forceX())
+					.force("center", d3.forceCenter(width/2 - 50, height/2 - 50))					
 					.on('tick', tick);
 
 	let link = svg.selectAll(".link")
